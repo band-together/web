@@ -3,7 +3,9 @@ import './App.css';
 import AppNavbar from "./global/AppNavbar";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import Discover from "./band/Discover";
-import Setup from "./band/Setup";
+import Home from "./user/Home";
+
+import StepContainer from "./band/setup_flow/StepContainer";
 import 'semantic-ui-css/semantic.min.css'
 
 
@@ -38,8 +40,8 @@ class App extends Component {
             >
             </AppNavbar>
             <div id="router content">
-              <Route path="/" exact component={Discover}/>
-              <Route path="/setup/" component={Setup}/>
+              <Route path="/" exact component={Home}/>
+              <Route path="/setup/" component={StepContainer}/>
               <Route path="/discover/" component={Discover}/>
             </div>
           </Router>

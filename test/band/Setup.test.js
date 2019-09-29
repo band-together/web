@@ -1,13 +1,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Setup from "../../src/band/Setup";
+import StepFlow1 from "../../src/band/setup_flow/StepFlow1";
 import "jest-enzyme";
 import { Form } from 'semantic-ui-react'
 
 
-describe("Setup", () => {
+describe("StepFlow1", () => {
     it("renders the form", () => {
-        const wrapper = shallow(<Setup/>);
+        const wrapper = shallow(<StepFlow1/>);
         expect(wrapper).toContainReact(
             <div id="band-setup">
                 <Form

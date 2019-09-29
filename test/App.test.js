@@ -4,7 +4,7 @@ import {shallow} from 'enzyme';
 import AppNavbar from "../src/global/AppNavbar";
 import {Route} from "react-router";
 import Discover from "../src/band/Discover";
-import Setup from "../src/band/Setup";
+import StepFlow1 from "../src/band/setup_flow/StepFlow1";
 import "jest-enzyme";
 
 
@@ -24,7 +24,7 @@ describe("App", () => {
         expect(wrapper).toContainReact(
             <div id="router content">
                 <Route path="/" exact component={Discover}/>
-                <Route path="/setup/" component={Setup}/>
+                <Route path="/setup/" component={StepFlow1}/>
                 <Route path="/discover/" component={Discover}/>
             </div>);
     });
