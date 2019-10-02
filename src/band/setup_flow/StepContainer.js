@@ -60,7 +60,7 @@ class StepContainer extends Component {
         if (currentStep === 4) {
             return <StepFlow4
                 userRoles={this.state.userRoles}
-                bandRoles={this.state.selectedBandRoles}
+                bandRoles={this.state.bandRoles}
             />;
         }
         return <div/>

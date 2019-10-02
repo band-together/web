@@ -33,6 +33,12 @@ const ROLES = [
         text: 'Keys',
         value: 'Keys',
         image: { avatar: true, src: '/images/avatar/small/elliot.jpg' },
+    },
+    {
+        key: 'Wildcard',
+        text: 'Wildcard',
+        value: 'Wildcard',
+        image: { avatar: true, src: '/images/avatar/small/elliot.jpg' },
     }
 ];
 
@@ -80,7 +86,7 @@ export default class StepFlow3 extends Component {
 
     handleDeleteRole = (event, data, position) => {
         let newBandRoles = this.state.selectedBandRoles;
-        let removedItem = newBandRoles.splice(position, 1);
+        newBandRoles.splice(position, 1);
         this.setState({
             numberOfExtraRoles: this.state.numberOfExtraRoles - 1,
             selectedBandRoles: newBandRoles
