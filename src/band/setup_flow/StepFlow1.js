@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react'
+import { Form, Header } from 'semantic-ui-react'
 
 
 /**
@@ -10,7 +10,8 @@ class StepFlow1 extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bandName: ''
+            bandName: '',
+            loading: false
         };
     }
 
@@ -42,13 +43,13 @@ class StepFlow1 extends Component {
 
     render() {
         return (
-            <div id="band-setup">
+            <div id="band-setup-step-1">
                 <Form
                     loading={this.state.loading}
                     onSubmit={this.handleSubmit}
                 >
                     <Form.Field>
-                        <label>Enter band name</label>
+                        <Header as="h1">Enter band name</Header>
                         <input
                             name="band-name"
                             onChange={this.handleChange}
