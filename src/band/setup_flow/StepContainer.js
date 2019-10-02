@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import StepFlow1 from './StepFlow1';
 import StepFlow2 from './StepFlow2';
 import StepFlow3 from './StepFlow3';
+import StepFlow4 from './StepFlow4';
+
 
 class StepContainer extends Component {
 
@@ -11,7 +13,8 @@ class StepContainer extends Component {
             loading: false,
             bandName: '',
             currentStep: 1,
-            userRoles: new Set()
+            userRoles: new Set(),
+            bandRoles: []
         };
     }
 
@@ -29,9 +32,8 @@ class StepContainer extends Component {
         });
     };
 
-    handleSubmitBandRoles = (userRoles, bandRoles) => {
+    handleSubmitBandRoles = (bandRoles) => {
         this.setState({
-            userRoles: userRoles,
             bandRoles: bandRoles,
             currentStep: 4
         });
@@ -53,6 +55,12 @@ class StepContainer extends Component {
             return <StepFlow3
                 userRoles={this.state.userRoles}
                 handleSubmitBandRoles={this.handleSubmitBandRoles}
+            />;
+        }
+        if (currentStep === 4) {
+            return <StepFlow4
+                userRoles={this.state.userRoles}
+                bandRoles={this.state.selectedBandRoles}
             />;
         }
         return <div/>

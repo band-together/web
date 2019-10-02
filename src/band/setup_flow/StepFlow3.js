@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Header, Icon } from 'semantic-ui-react'
+import { Form, Header, Icon } from 'semantic-ui-react';
 import {BandRoleSelector} from './BandRoleSelector';
 import {BandMemberCard} from "./BandMemberCard";
 
@@ -14,6 +14,24 @@ const ROLES = [
         key: 'Drums',
         text: 'Drums',
         value: 'Drums',
+        image: { avatar: true, src: '/images/avatar/small/elliot.jpg' },
+    },
+    {
+        key: 'Bass',
+        text: 'Bass',
+        value: 'Bass',
+        image: { avatar: true, src: '/images/avatar/small/elliot.jpg' },
+    },
+    {
+        key: 'Vocalist',
+        text: 'Vocalist',
+        value: 'Vocalist',
+        image: { avatar: true, src: '/images/avatar/small/elliot.jpg' },
+    },
+    {
+        key: 'Keys',
+        text: 'Keys',
+        value: 'Keys',
         image: { avatar: true, src: '/images/avatar/small/elliot.jpg' },
     }
 ];
@@ -42,19 +60,17 @@ export default class StepFlow3 extends Component {
             this.setState({
                 loading: false
             });
-            this.props.handleSubmitBandRoles(this.state.userRoles, this.state.bandRoles);
+            this.props.handleSubmitBandRoles(this.state.selectedBandRoles);
         }, 400);
     };
 
     handleAddRole = () => {
-        console.log("Adding a role.");
         this.setState({
             numberOfExtraRoles: this.state.numberOfExtraRoles + 1
         });
     };
 
     handleSelectRole = (event, data, i) => {
-        console.log("selecting a role", data.value);
         const newBandRoles = this.state.selectedBandRoles;
         newBandRoles[i] = data.value;
         this.setState({
@@ -62,28 +78,42 @@ export default class StepFlow3 extends Component {
         }, () => console.log("current selected band roles: ", this.state.selectedBandRoles));
     };
 
+    handleDeleteRole = (event, data, position) => {
+        let newBandRoles = this.state.selectedBandRoles;
+        let removedItem = newBandRoles.splice(position, 1);
+        this.setState({
+            numberOfExtraRoles: this.state.numberOfExtraRoles - 1,
+            selectedBandRoles: newBandRoles
+        }, () => console.log("New selected band roles: ", this.state.selectedBandRoles));
+    };
+
     render() {
+        const {loading, userRoles, numberOfExtraRoles, selectedBandRoles} = this.state;
         return <div id="band-setup-step-3">
             <Form
-                loading={this.state.loading}
+                loading={loading}
                 onSubmit={this.handleSubmit}
             >
                 <Form.Field>
                     <Header as="h1">Add your roles</Header>
-                    {[...this.state.userRoles].map((role, i) =>
+                    {[...userRoles].map((role, position) =>
                         <BandMemberCard
                             role={role}
                             name="You"
                             skill="Beginner"
                             description="Lorem ipsum"
-                            key={`${role}-${i}`}
+                            key={`user-role-${role}-${position}`}
                         />
                     )}
                 </Form.Field>
-                {this.state.numberOfExtraRoles ? [...Array(this.state.numberOfExtraRoles)].map((_, i) =>
-                    <div key={`extra-roles-${i}`}>
-                        <BandRoleSelector roles={ROLES} onChange={(event, data) => this.handleSelectRole(event, data, i)}/>
-                        <Icon name="delete" size="big" onClick={this.handleAddRole}/>
+                {numberOfExtraRoles ? [...Array(numberOfExtraRoles)].map((_, position) =>
+                    <div key={`extra-roles-${position}`}>
+                        <BandRoleSelector
+                            option={selectedBandRoles[position]}
+                            roles={ROLES}
+                            onChange={(event, data) => this.handleSelectRole(event, data, position)}/>
+                        <Icon name="delete" size="big" onClick={(event, data) => this.handleDeleteRole(event, data, position)}/>
+                        {position}
                         <br/>
                     </div>
                 ) : null}
