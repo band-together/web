@@ -86,7 +86,7 @@ checkBrowsers(paths.appPath, isInteractive)
       errors: errors =>
         devServer.sockWrite(devServer.sockets, 'errors', errors),
     };
-    // StepFlow1 a webpack compiler that is configured with custom messages.
+    // Create a webpack compiler that is configured with custom messages.
     const compiler = createCompiler({
       appName,
       config,
