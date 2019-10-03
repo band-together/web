@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import StepFlow1 from "../../src/band/setup_flow/StepFlow1";
+import StepFlow1 from "../../src/band/setup_flow/1-Band-Name";
 import "jest-enzyme";
 import { Form } from 'semantic-ui-react'
 

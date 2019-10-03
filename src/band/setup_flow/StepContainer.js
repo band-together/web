@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import StepFlow1 from './StepFlow1';
-import StepFlow2 from './StepFlow2';
-import StepFlow3 from './StepFlow3';
-import StepFlow4 from './StepFlow4';
-
+import StepFlow1 from './1-Band-Name';
+import StepFlow2 from './2-User-Roles';
+import StepFlow3 from './3-Band-Roles';
+import StepFlow4 from './4-Invite-Band';
+import StepFlow5 from './5-Band-Calendar';
+import StepFlow6 from './6-Band-Style';
+import {StepDone} from './StepDone';
 
 class StepContainer extends Component {
 
@@ -39,6 +41,24 @@ class StepContainer extends Component {
         });
     };
 
+    handleSubmitBandMembers = () => {
+        this.setState({
+            currentStep: 5
+        });
+    };
+
+    handleSubmitCalendar = () => {
+        this.setState({
+            currentStep: 6
+        });
+    };
+
+    handleSubmitStyle = () => {
+        this.setState({
+            currentStep: 7
+        });
+    };
+
     render() {
         const { currentStep } = this.state;
         if (currentStep === 1) {
@@ -61,9 +81,20 @@ class StepContainer extends Component {
             return <StepFlow4
                 userRoles={this.state.userRoles}
                 bandRoles={this.state.bandRoles}
+                handleSubmitBandMembers={this.handleSubmitBandMembers}
             />;
         }
-        return <div/>
+        if (currentStep === 5) {
+            return <StepFlow5
+                handleSubmitCalendar={this.handleSubmitCalendar}
+                />
+        }
+        if (currentStep === 6) {
+            return <StepFlow6
+                handleSubmitStyle={this.handleSubmitStyle}
+                />;
+        }
+        return <StepDone/>;
     }
 }
 

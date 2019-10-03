@@ -4,7 +4,7 @@ import {shallow} from 'enzyme';
 import AppNavbar from "../src/global/AppNavbar";
 import {Route} from "react-router";
 import Discover from "../src/band/Discover";
-import StepFlow1 from "../src/band/setup_flow/StepFlow1";
+import StepFlow1 from "../src/band/setup_flow/1-Band-Name";
 import "jest-enzyme";
 
 

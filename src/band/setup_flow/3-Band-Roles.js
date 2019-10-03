@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Header, Icon } from 'semantic-ui-react';
 import {BandRoleSelector} from './BandRoleSelector';
-import {BandMemberCard} from "./BandMemberCard";
 
 const ROLES = [
     {
@@ -103,13 +102,13 @@ export default class StepFlow3 extends Component {
                 <Form.Field>
                     <Header as="h1">Add your roles</Header>
                     {[...userRoles].map((role, position) =>
-                        <BandMemberCard
-                            role={role}
-                            name="You"
-                            skill="Beginner"
-                            description="Lorem ipsum"
-                            key={`user-role-${role}-${position}`}
+                        <div key={`extra-roles-${position}`}>
+                        <BandRoleSelector
+                            option={role}
+                            roles={ROLES}
+                            disabled={true}
                         />
+                        </div>
                     )}
                 </Form.Field>
                 {numberOfExtraRoles ? [...Array(numberOfExtraRoles)].map((_, position) =>
@@ -119,7 +118,6 @@ export default class StepFlow3 extends Component {
                             roles={ROLES}
                             onChange={(event, data) => this.handleSelectRole(event, data, position)}/>
                         <Icon name="delete" size="big" onClick={(event, data) => this.handleDeleteRole(event, data, position)}/>
-                        {position}
                         <br/>
                     </div>
                 ) : null}
