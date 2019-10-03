@@ -8,5 +8,6 @@ export const BandRoleSelector = ({ option, roles, onChange }) =>
         options={roles}
         onChange={onChange}
         value={option}
+        fluid
     />;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Header, Form, Item} from 'semantic-ui-react';
+import {Header, Form, Item, Grid} from 'semantic-ui-react';
 import {BandMemberCard} from "./BandMemberCard";
 import {InviteBandMemberItem} from "./InviteBandMemberItem";
 
@@ -34,26 +34,40 @@ export default class StepFlow4 extends React.Component {
                 loading={loading}
                 onSubmit={this.handleSubmit}
             >
-                <Header as="h1">Assign roles</Header>
-                {userRoles && [...userRoles].map((role, position) =>
-                <BandMemberCard
-                    role={role}
-                    name="You"
-                    skill="Beginner"
-                    description="Lorem ipsum"
-                    key={`you-${role}-${position}`}
-                />
-                )}
-                <Item.Group link>
-                    {bandRoles && bandRoles.map((role, i) =>
-                        <InviteBandMemberItem
-                            role={role}
-                            skill="Beginner"
-                            key={`member-${role}-${i}`}
-                        />
-                    )}
-                </Item.Group>
-                <Form.Button>Save</Form.Button>
+                <Grid columns='three' divided>
+                    <Header as="h1">Your roles</Header>
+                    <Grid.Row>
+                        {userRoles && [...userRoles].map((role, position) =>
+                            <Grid.Column
+                                key={`you-${role}-${position}`}
+                            >
+                                <BandMemberCard
+                                    role={role}
+                                    name="You"
+                                    skill="Beginner"
+                                    description="Lorem ipsum"
+                                />
+                            </Grid.Column>
+                        )}
+                    </Grid.Row>
+                    <Header as="h1">Invite bandmates</Header>
+                    <Grid.Row>
+
+                            {bandRoles && bandRoles.map((role, i) =>
+                                <Grid.Column
+                                    key={`member-${role}-${i}`}
+                                >
+                                <Item.Group link>
+                                <InviteBandMemberItem
+                                        role={role}
+                                        skill="Beginner"
+                                    />
+                                </Item.Group>
+                                </Grid.Column>
+                            )}
+                    </Grid.Row>
+                    <Form.Button>Save</Form.Button>
+                </Grid>
             </Form>
         </div>;
     }
