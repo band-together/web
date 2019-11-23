@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import StepFlow1 from "../../src/band/setup_flow/1-Band-Name";
 import "jest-enzyme";
-import {Form, Header} from 'semantic-ui-react'
+import {Form, Header, Input} from 'semantic-ui-react'
 
 describe("StepFlow1", () => {
   it("renders the form", () => {
@@ -15,9 +15,12 @@ describe("StepFlow1", () => {
         >
           <Form.Field>
             <Header as="h1">Enter band name</Header>
-            <input
+            <Input
+              id="band-name-input"
               name="band-name"
               onChange={wrapper.instance().handleChange}
+              maxLength="120"
+              style={{ width: '300px' }}
             />
           </Form.Field>
           <Form.Button>Submit</Form.Button>

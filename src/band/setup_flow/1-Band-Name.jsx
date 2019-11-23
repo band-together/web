@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Header } from 'semantic-ui-react';
+import { Form, Header, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 /**
@@ -52,9 +52,12 @@ class StepFlow1 extends Component {
           >
             <Form.Field>
               <Header as="h1">Enter band name</Header>
-              <input
+              <Input
+                id="band-name-input"
                 name="band-name"
                 onChange={this.handleChange}
+                maxLength="120"
+                style={{ width: '300px' }}
               />
             </Form.Field>
             <Form.Button>Submit</Form.Button>

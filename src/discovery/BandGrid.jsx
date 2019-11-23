@@ -4,16 +4,22 @@ import PropTypes from 'prop-types';
 import BandCard from './BandCard';
 import { BAND } from '../util/props';
 
-export default function BandGrid({ loading, bands }) {
+export default function BandGrid({
+  loading, bands, currentBand, onBandClick,
+}) {
   if (loading) {
     return <Grid.Column />;
   }
   return (
     <>
       {bands.map((band) => (
-        <Grid.Column>
+        <Grid.Column
+          key={`band-grid-item-${band.id}`}
+        >
           <BandCard
             band={band}
+            active={currentBand === band.bandName}
+            onBandClick={onBandClick}
           />
         </Grid.Column>
       ))}
@@ -24,8 +30,11 @@ export default function BandGrid({ loading, bands }) {
 BandGrid.propTypes = {
   loading: PropTypes.bool.isRequired,
   bands: PropTypes.arrayOf(PropTypes.shape(BAND)),
+  currentBand: PropTypes.string,
+  onBandClick: PropTypes.func.isRequired,
 };
 
 BandGrid.defaultProps = {
-  bands: PropTypes.arrayOf(),
+  bands: [],
+  currentBand: '',
 };

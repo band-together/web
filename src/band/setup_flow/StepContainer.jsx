@@ -10,6 +10,7 @@ import StepFlow5 from './5-Band-Calendar';
 import StepFlow6 from './6-Band-Style';
 import StepFlow7 from './7-Description';
 
+import '../bandSetup.css';
 
 export default class StepContainer extends Component {
   constructor(props) {
@@ -130,7 +131,7 @@ export default class StepContainer extends Component {
             />
           );
         default:
-          return <Redirect to="" />;
+          return <Redirect to="/" />;
       }
     }
 }
